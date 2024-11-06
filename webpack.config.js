@@ -15,7 +15,10 @@ module.exports = (env, argv) => {
       path: path.resolve(__dirname, 'dist'),
       filename: '[name].[contenthash].js',
       clean: true,
-      publicPath: '/'
+      publicPath: '/',
+      chunkFilename: isDevelopment 
+        ? '[name].chunk.js'
+        : '[name].[contenthash].chunk.js',
     },
     mode: isDevelopment ? 'development' : 'production',
     devtool: isDevelopment ? 'eval-source-map' : 'source-map',
