@@ -4,8 +4,6 @@ const Dotenv = require('dotenv-webpack');
 const webpack = require('webpack');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const TerserPlugin = require('terser-webpack-plugin');
-const AddAssetHtmlPlugin = require('add-asset-html-webpack-plugin');
-const fs = require('fs');
 
 module.exports = (env, argv) => {
   const isAnalyze = process.argv.includes('--analyze');
@@ -190,25 +188,6 @@ module.exports = (env, argv) => {
         openAnalyzer: true
       })
     );
-  }
-
-  if (!isDevelopment) {
-    const dllPath = path.join(__dirname, 'public/dll');
-    const manifestPath = path.join(dllPath, 'vendor-manifest.json');
-
-    if (fs.existsSync(manifestPath)) {
-      config.plugins.push(
-        new webpack.DllReferencePlugin({
-          manifest: require(manifestPath)
-        }),
-        new AddAssetHtmlPlugin({
-          filepath: path.resolve(__dirname, 'public/dll/vendor.dll.js'),
-          publicPath: 'dll'
-        })
-      );
-    } else {
-      console.warn('DLL files not found. Please run "npm run build:dll" first.');
-    }
   }
 
   return config;

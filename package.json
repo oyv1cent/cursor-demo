@@ -5,12 +5,11 @@
   "main": "index.js",
   "scripts": {
     "start": "webpack serve --mode development",
-    "build": "npm run build:dll && webpack --mode production",
+    "build": "webpack --mode production",
     "lint": "eslint src --ext .ts,.tsx",
     "lint:fix": "eslint src --ext .ts,.tsx --fix",
     "format": "prettier --write \"src/**/*.{ts,tsx,css,md}\"",
-    "analyze": "webpack --mode production --analyze",
-    "build:dll": "webpack --config webpack.dll.config.js"
+    "analyze": "webpack --mode production --analyze"
   },
   "dependencies": {
     "axios": "^1.6.0",
@@ -26,9 +25,7 @@
     "@types/react-dom": "^18.2.0",
     "@typescript-eslint/eslint-plugin": "^6.0.0",
     "@typescript-eslint/parser": "^6.0.0",
-    "add-asset-html-webpack-plugin": "^5.0.2",
     "css-loader": "^6.8.1",
-    "dotenv-webpack": "^8.0.1",
     "eslint": "^8.0.0",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-prettier": "^5.0.0",
